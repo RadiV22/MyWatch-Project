@@ -401,14 +401,23 @@ function App() {
   });
 
   return (
-    <div className="min-h-screen bg-gray-100 text-gray-900">
+    <div className="mywatch-app min-h-screen">
       <div className="mx-auto max-w-6xl px-4 py-8 sm:px-6">
-        <header className="mb-10 border-b border-gray-200 pb-5">
-          <h1 className="text-3xl font-bold text-blue-600">MyWatch</h1>
+        <header className="watch-header">
+          <div className="watch-brand">
+            <span className="watch-logo" aria-hidden="true">
+              ▶
+            </span>
 
-          <p className="mt-1 text-sm text-gray-500">
-            Your personal watch tracker
-          </p>
+            <div>
+              <h1>
+                My<span>Watch.</span>
+              </h1>
+              <p>Your personal watch tracker</p>
+            </div>
+          </div>
+
+          <span className="watch-header-note">Your collection. Your pace.</span>
         </header>
         {selectedShow ? (
           <>
@@ -563,13 +572,17 @@ function App() {
               <>
                 <div className="mb-8 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
                   <div>
-                    <h2 className="text-3xl font-bold text-gray-900">
-                      My Watchlist
-                    </h2>
+                    <p className="watch-eyebrow">YOUR PERSONAL COLLECTION</p>
 
-                    <p className="mt-2 text-gray-500">
-                      Keep track of your favorite shows and movies.
+                    <h2 className="watch-heading">A good story awaits.</h2>
+
+                    <p className="mt-3 text-gray-500">
+                      Keep your favorite shows close, one episode at a time.
                     </p>
+
+                    <span className="watch-count">
+                      {seriesList.length} titles in your watchlist
+                    </span>
                   </div>
 
                   <button
@@ -584,6 +597,7 @@ function App() {
                   <input
                     className="w-full rounded-lg border border-gray-300 bg-white px-4 py-3 outline-none transition focus:border-blue-500 sm:max-w-md"
                     type="text"
+                    aria-label="Search shows"
                     placeholder="Search show..."
                     value={searchTerm}
                     onChange={(event) => {

@@ -7,38 +7,36 @@ interface ShowCardProps {
 
 function ShowCard(props: ShowCardProps) {
   return (
-    <div className="overflow-hidden rounded-xl border border-gray-200 bg-white shadow-sm transition hover:-translate-y-1 hover:shadow-md">
-      {props.show.poster && (
-        <img
-          className="h-56 w-full object-cover"
-          src={props.show.poster}
-          alt={props.show.title}
-        />
-      )}
+    <article className="watch-card">
+      <div className="watch-card-poster">
+        {props.show.poster ? (
+          <img src={props.show.poster} alt={props.show.title} loading="lazy" />
+        ) : (
+          <div className="watch-poster-placeholder">
+            <span aria-hidden="true">▶</span>
+            <span>No poster yet</span>
+          </div>
+        )}
 
-      <div className="p-5">
-        <p className="mb-2 text-sm font-medium text-blue-600">
-          {props.show.type}
-        </p>
+        <span className="watch-type">{props.show.type}</span>
+      </div>
 
-        <h2 className="mb-2 text-xl font-bold text-gray-900">
-          {props.show.title}
-        </h2>
+      <div className="watch-card-content">
+        <h3>{props.show.title}</h3>
 
-        <p className="mb-5 text-sm leading-6 text-gray-500">
-          {props.show.description}
-        </p>
+        <p className="watch-card-description">{props.show.description}</p>
 
         <button
-          className="w-full rounded-lg border border-gray-300 px-4 py-2 font-medium text-gray-700 transition hover:bg-gray-100"
-          onClick={() => {
-            props.onSelect(props.show.id);
-          }}
+          type="button"
+          className="watch-detail-button"
+          aria-label={`View details for ${props.show.title}`}
+          onClick={() => props.onSelect(props.show.id)}
         >
-          View Detail
+          View details
+          <span aria-hidden="true">↗</span>
         </button>
       </div>
-    </div>
+    </article>
   );
 }
 
